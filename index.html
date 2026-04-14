@@ -1,0 +1,1725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jongkong Koe — Authentic. Sweet. Nostalgic.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ─────────────────────────────────────────────
+       TOKENS & RESET
+    ───────────────────────────────────────────── */
+    :root {
+      --green-dark:    #3A5C3A;
+      --green-mid:     #4E7050;
+      --green-primary: #5E8060;
+      --green-soft:    #7A9E7C;
+      --green-light:   #A8C5A4;
+      --green-mist:    #D6E8D2;
+      --green-frost:   #EBF3E8;
+      --white:         #FFFFFF;
+      --off-white:     #F7F5F0;
+      --cream:         #F0EDE5;
+      --brown-accent:  #B8956A;
+      --brown-light:   #D4B896;
+      --brown-dark:    #8C6A44;
+      --text-dark:     #1E2820;
+      --text-mid:      #3D4F3E;
+      --text-muted:    #6B7D6C;
+      --text-light:    #A0ADA1;
+      --shadow-sm:     0 2px 12px rgba(62, 92, 62, 0.08);
+      --shadow-md:     0 8px 32px rgba(62, 92, 62, 0.12);
+      --shadow-lg:     0 16px 56px rgba(62, 92, 62, 0.16);
+      --radius-sm:     8px;
+      --radius-md:     16px;
+      --radius-lg:     24px;
+      --radius-xl:     40px;
+      --font-display:  'Playfair Display', Georgia, serif;
+      --font-body:     'Inter', system-ui, sans-serif;
+      --transition:    0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--text-dark);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    a   { text-decoration: none; color: inherit; }
+
+    /* ─────────────────────────────────────────────
+       UTILITY
+    ───────────────────────────────────────────── */
+    .container {
+      max-width: 1160px;
+      margin-inline: auto;
+      padding-inline: 32px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ─────────────────────────────────────────────
+       NAVIGATION
+    ───────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0;
+      transition: background var(--transition), box-shadow var(--transition);
+    }
+    .nav.scrolled {
+      background: rgba(255,255,255,0.96);
+      box-shadow: var(--shadow-sm);
+      backdrop-filter: blur(12px);
+    }
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+    .nav__logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav__logo-img {
+      height: 48px;
+      width: 48px;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+    .nav__logo-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    .nav__logo-name {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--green-dark);
+      letter-spacing: 0.02em;
+    }
+    .nav__logo-tag {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--brown-accent);
+    }
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav__links a {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-mid);
+      transition: color var(--transition);
+    }
+    .nav__links a:hover { color: var(--green-primary); }
+    .nav__cta {
+      background: var(--green-primary);
+      color: var(--white) !important;
+      padding: 10px 22px;
+      border-radius: 100px;
+      font-size: 13px !important;
+      font-weight: 500 !important;
+      letter-spacing: 0.04em !important;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition) !important;
+      box-shadow: 0 4px 16px rgba(94, 128, 96, 0.3);
+    }
+    .nav__cta:hover {
+      background: var(--green-dark) !important;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(94, 128, 96, 0.35) !important;
+    }
+
+    /* Hamburger */
+    .nav__burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .nav__burger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--green-dark);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    /* ─────────────────────────────────────────────
+       HERO
+    ───────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(160deg, #EBF3E8 0%, #D6E8D2 40%, #B8D4B4 100%);
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 80% 50%, rgba(255,255,255,0.45) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 80% at 10% 90%, rgba(62,92,62,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    /* Decorative circles */
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 560px; height: 560px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero__container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      padding-top: 100px;
+      padding-bottom: 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.7);
+      border: 1px solid rgba(94, 128, 96, 0.2);
+      padding: 6px 16px 6px 8px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+      backdrop-filter: blur(8px);
+    }
+    .hero__badge-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--brown-accent);
+    }
+    .hero__badge-text {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green-dark);
+    }
+
+    .hero__headline {
+      font-family: var(--font-display);
+      font-size: clamp(38px, 5vw, 58px);
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--green-dark);
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+    .hero__headline em {
+      font-style: italic;
+      color: var(--green-primary);
+    }
+
+    .hero__sub {
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--text-mid);
+      margin-bottom: 40px;
+      max-width: 440px;
+    }
+
+    .hero__actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      border: none;
+      transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+      text-decoration: none;
+    }
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn--primary {
+      background: var(--green-dark);
+      color: var(--white);
+      box-shadow: 0 8px 28px rgba(58, 92, 58, 0.35);
+    }
+    .btn--primary:hover {
+      background: var(--green-mid);
+      box-shadow: 0 12px 36px rgba(58, 92, 58, 0.42);
+    }
+
+    .btn--ghost {
+      background: transparent;
+      color: var(--green-dark);
+      border: 1.5px solid rgba(58, 92, 58, 0.3);
+    }
+    .btn--ghost:hover {
+      background: rgba(58, 92, 58, 0.06);
+      border-color: var(--green-dark);
+    }
+
+    .btn--white {
+      background: var(--white);
+      color: var(--green-dark);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+    }
+    .btn--white:hover {
+      background: var(--off-white);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.16);
+    }
+
+    .btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+    /* Hero visual */
+    .hero__visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero__card {
+      position: relative;
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.9);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: var(--shadow-lg);
+      max-width: 380px;
+      width: 100%;
+    }
+
+    .hero__product-visual {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: var(--radius-md);
+      background: linear-gradient(145deg, #5E8060, #3A5C3A);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero__product-visual::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 50%;
+      background: rgba(255,255,255,0.12);
+    }
+
+    /* Jongkong illustration layers */
+    .jongkong-layers {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      width: 160px;
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 8px 20px rgba(0,0,0,0.25));
+    }
+    .layer {
+      height: 18px;
+      border-radius: 3px;
+    }
+    .layer--white { background: #F0EDE8; }
+    .layer--green { background: #7EC880; }
+    .layer--white-sm { background: #F0EDE8; height: 14px; }
+    .layer--green-sm { background: #5DA660; height: 14px; }
+
+    .jongkong-wrap {
+      position: relative;
+      padding: 12px 0;
+    }
+    .jongkong-leaf-left,
+    .jongkong-leaf-right {
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 14px;
+      background: #4A8050;
+      border-radius: 0 50% 50% 0;
+    }
+    .jongkong-leaf-left { left: -14px; border-radius: 50% 0 0 50%; }
+    .jongkong-leaf-right { right: -14px; }
+
+    .hero__card-label {
+      text-align: center;
+    }
+    .hero__card-name {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--green-dark);
+      margin-bottom: 4px;
+    }
+    .hero__card-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+    .hero__card-price {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      background: var(--green-frost);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--green-mist);
+    }
+    .hero__card-price-val {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--green-dark);
+    }
+    .hero__card-price-per {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Floating badge */
+    .hero__float-badge {
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      background: var(--brown-accent);
+      color: var(--white);
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      font-weight: 600;
+      text-align: center;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.3;
+      box-shadow: 0 8px 24px rgba(184, 149, 106, 0.4);
+      animation: spin-badge 12s linear infinite;
+    }
+    @keyframes spin-badge {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    .hero__scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .hero__scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--green-soft), transparent);
+      animation: scroll-line 1.8s ease-in-out infinite;
+    }
+    @keyframes scroll-line {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50%       { opacity: 1;   transform: scaleY(0.6); }
+    }
+
+    /* ─────────────────────────────────────────────
+       ABOUT
+    ───────────────────────────────────────────── */
+    .about {
+      padding: 120px 0;
+      background: var(--white);
+    }
+    .about__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about__visual {
+      position: relative;
+    }
+    .about__image-wrap {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      background: linear-gradient(135deg, var(--green-frost) 0%, var(--green-mist) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .about__image-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 60%, rgba(58, 92, 58, 0.12) 100%);
+    }
+
+    /* Big decorative jongkong for about section */
+    .about__jongkong-big {
+      width: 220px;
+      position: relative;
+      z-index: 1;
+    }
+    .jb-body {
+      display: flex;
+      flex-direction: column;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(58, 92, 58, 0.2);
+    }
+    .jb-row {
+      height: 28px;
+    }
+    .jb-row.w  { background: #F4F0E8; }
+    .jb-row.g  { background: #7EC880; }
+    .jb-row.g2 { background: #5DA660; }
+    .jb-row.w2 { background: #EDE9E0; }
+    .jb-leaf-top,
+    .jb-leaf-bot {
+      height: 20px;
+      background: #4A8050;
+    }
+    .jb-leaf-top { border-radius: 12px 12px 0 0; }
+    .jb-leaf-bot { border-radius: 0 0 12px 12px; }
+
+    .about__accent-card {
+      position: absolute;
+      bottom: -24px;
+      right: -24px;
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 20px 24px;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      min-width: 200px;
+    }
+    .about__accent-icon {
+      width: 48px; height: 48px;
+      border-radius: var(--radius-sm);
+      background: var(--green-frost);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 22px;
+    }
+    .about__accent-label { font-size: 11px; color: var(--text-muted); margin-bottom: 2px; }
+    .about__accent-val   { font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--green-dark); }
+
+    .section-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--brown-accent);
+      margin-bottom: 16px;
+    }
+    .section-eyebrow::before {
+      content: '';
+      width: 28px; height: 1.5px;
+      background: var(--brown-accent);
+      border-radius: 2px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(30px, 4vw, 44px);
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+    .section-title em {
+      font-style: italic;
+      color: var(--green-primary);
+    }
+
+    .section-body {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--text-mid);
+    }
+
+    .about__divider {
+      width: 48px; height: 2px;
+      background: linear-gradient(to right, var(--green-primary), var(--brown-accent));
+      border-radius: 2px;
+      margin: 28px 0;
+    }
+
+    .about__ingredients {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+    .ingredient-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      background: var(--green-frost);
+      border: 1px solid var(--green-mist);
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--green-dark);
+    }
+    .ingredient-pill::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--green-soft);
+    }
+
+    /* ─────────────────────────────────────────────
+       PRODUCT HIGHLIGHT
+    ───────────────────────────────────────────── */
+    .product {
+      padding: 120px 0;
+      background: var(--off-white);
+    }
+    .product__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .product__content { order: 2; }
+    .product__visual  { order: 1; }
+
+    .product__showcase {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 1;
+      background: linear-gradient(145deg, #3A5C3A 0%, #5E8060 50%, #7A9E7C 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: var(--shadow-lg);
+    }
+    .product__showcase::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 50%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+    }
+
+    /* Stylized jongkong cross-section */
+    .jongkong-cross {
+      width: 180px;
+      height: 220px;
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 12px 32px rgba(0,0,0,0.3));
+    }
+    .jc-container {
+      width: 100%;
+      height: 100%;
+      border-radius: 16px 16px 20px 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .jc-leaf { height: 22px; background: #2D6B3A; }
+    .jc-layer { flex: 1; }
+    .jc-layer.w1 { background: #F0EDE6; flex: 1.2; }
+    .jc-layer.g1 { background: #6ABD6E; }
+    .jc-layer.w2 { background: #EDE9DF; }
+    .jc-layer.g2 { background: #52A657; }
+    .jc-layer.w3 { background: #F0EDE6; flex: 1.2; }
+    .jc-leaf-bot { height: 22px; background: #2D6B3A; }
+
+    /* Shine overlay */
+    .product__showcase::after {
+      content: '';
+      position: absolute;
+      top: 20%; left: 10%;
+      width: 30%; height: 40%;
+      background: radial-gradient(ellipse, rgba(255,255,255,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .product__quote {
+      margin-top: 32px;
+      padding: 24px 28px;
+      background: var(--white);
+      border-radius: var(--radius-md);
+      border-left: 3px solid var(--green-primary);
+      box-shadow: var(--shadow-sm);
+    }
+    .product__quote-text {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--text-mid);
+    }
+    .product__quote-author {
+      margin-top: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--brown-accent);
+    }
+
+    .product__stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 36px;
+    }
+    .stat-card {
+      padding: 20px;
+      background: var(--white);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--green-mist);
+    }
+    .stat-card__num {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 600;
+      color: var(--green-dark);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-card__label { font-size: 12px; color: var(--text-muted); }
+
+    /* ─────────────────────────────────────────────
+       PRICING
+    ───────────────────────────────────────────── */
+    .pricing {
+      padding: 120px 0;
+      background: var(--white);
+    }
+    .pricing__header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .pricing__header .section-eyebrow { justify-content: center; }
+    .pricing__header .section-eyebrow::before { display: none; }
+    .pricing__header .section-eyebrow::after {
+      content: '';
+      width: 28px; height: 1.5px;
+      background: var(--brown-accent);
+      border-radius: 2px;
+    }
+    .pricing__header .section-title { margin-bottom: 12px; }
+    .pricing__subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 420px;
+      margin-inline: auto;
+    }
+
+    .pricing__cards {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .price-card {
+      position: relative;
+      background: var(--white);
+      border: 1.5px solid var(--green-mist);
+      border-radius: var(--radius-lg);
+      padding: 48px 40px;
+      max-width: 380px;
+      width: 100%;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .price-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+    .price-card--featured {
+      background: linear-gradient(165deg, var(--green-dark) 0%, var(--green-mid) 100%);
+      border-color: var(--green-primary);
+      color: var(--white);
+      box-shadow: var(--shadow-lg);
+    }
+    .price-card__badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--brown-accent);
+      color: var(--white);
+      padding: 5px 18px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .price-card__name {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .price-card--featured .price-card__name { color: var(--white); }
+    .price-card__desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+    .price-card--featured .price-card__desc { color: rgba(255,255,255,0.7); }
+    .price-card__price {
+      margin-bottom: 32px;
+    }
+    .price-card__amount {
+      font-family: var(--font-display);
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--green-dark);
+      line-height: 1;
+    }
+    .price-card--featured .price-card__amount { color: var(--white); }
+    .price-card__unit {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .price-card--featured .price-card__unit { color: rgba(255,255,255,0.65); }
+    .price-card__features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 36px;
+    }
+    .price-card__features li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--text-mid);
+    }
+    .price-card--featured .price-card__features li { color: rgba(255,255,255,0.9); }
+    .price-card__features li::before {
+      content: '';
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: var(--green-frost);
+      flex-shrink: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235E8060' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+      background-size: 12px;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .price-card--featured .price-card__features li::before {
+      background-color: rgba(255,255,255,0.15);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+    }
+
+    /* ─────────────────────────────────────────────
+       GALLERY
+    ───────────────────────────────────────────── */
+    .gallery {
+      padding: 120px 0;
+      background: var(--off-white);
+    }
+    .gallery__header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .gallery__header .section-eyebrow { justify-content: center; }
+    .gallery__header .section-eyebrow::before { display: none; }
+    .gallery__header .section-eyebrow::after {
+      content: '';
+      width: 28px; height: 1.5px;
+      background: var(--brown-accent);
+      border-radius: 2px;
+    }
+    .gallery__grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      grid-template-rows: 420px;
+      gap: 16px;
+    }
+    .gallery__item {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+    }
+    .gallery__item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .gallery__item:hover img { transform: scale(1.05); }
+    .gallery__item-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(30,40,32,0.6) 100%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      display: flex;
+      align-items: flex-end;
+      padding: 24px;
+    }
+    .gallery__item:hover .gallery__item-overlay { opacity: 1; }
+    .gallery__item-label {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--white);
+      font-style: italic;
+    }
+    @media (max-width: 768px) {
+      .gallery__grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+      }
+      .gallery__item { height: 260px; }
+    }
+
+    /* ─────────────────────────────────────────────
+       WHY CHOOSE
+    ───────────────────────────────────────────── */
+    .why {
+      padding: 120px 0;
+      background: var(--cream);
+    }
+    .why__header {
+      text-align: center;
+      margin-bottom: 72px;
+    }
+    .why__header .section-eyebrow { justify-content: center; }
+    .why__header .section-eyebrow::before { display: none; }
+    .why__header .section-eyebrow::after {
+      content: '';
+      width: 28px; height: 1.5px;
+      background: var(--brown-accent);
+      border-radius: 2px;
+    }
+
+    .why__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+
+    .why-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 36px 28px;
+      text-align: center;
+      border: 1px solid rgba(168, 197, 164, 0.3);
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    }
+    .why-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--green-light);
+    }
+    .why-card__icon {
+      width: 64px; height: 64px;
+      border-radius: var(--radius-md);
+      background: var(--green-frost);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 28px;
+      transition: background var(--transition);
+    }
+    .why-card:hover .why-card__icon {
+      background: var(--green-mist);
+    }
+    .why-card__title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+    }
+    .why-card__body {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    /* ─────────────────────────────────────────────
+       CTA SECTION
+    ───────────────────────────────────────────── */
+    .cta-section {
+      padding: 120px 0;
+      background: linear-gradient(155deg, var(--green-dark) 0%, #2A4A2A 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(94, 128, 96, 0.3) 0%, transparent 70%);
+    }
+    .cta-section::after {
+      content: '';
+      position: absolute;
+      bottom: -150px; left: -100px;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(168, 197, 164, 0.12) 0%, transparent 70%);
+    }
+    .cta-section__inner {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 640px;
+      margin-inline: auto;
+    }
+    .cta-section__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--green-light);
+      margin-bottom: 24px;
+    }
+    .cta-section__eyebrow::before,
+    .cta-section__eyebrow::after {
+      content: '';
+      width: 28px; height: 1px;
+      background: var(--green-light);
+      border-radius: 2px;
+    }
+    .cta-section__title {
+      font-family: var(--font-display);
+      font-size: clamp(34px, 5vw, 52px);
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+    .cta-section__title em {
+      font-style: italic;
+      color: var(--green-light);
+    }
+    .cta-section__sub {
+      font-size: 16px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+      margin-bottom: 48px;
+    }
+    .cta-section__actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .cta-section__note {
+      margin-top: 24px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ─────────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────────── */
+    .footer {
+      background: var(--text-dark);
+      padding: 64px 0 40px;
+    }
+    .footer__inner {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 64px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 32px;
+    }
+    .footer__brand-name {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+    .footer__brand-tag {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--brown-light);
+      margin-bottom: 16px;
+    }
+    .footer__brand-desc {
+      font-size: 14px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.45);
+      max-width: 280px;
+    }
+    .footer__col-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 20px;
+    }
+    .footer__links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer__links a {
+      font-size: 14px;
+      color: rgba(255,255,255,0.55);
+      transition: color var(--transition);
+    }
+    .footer__links a:hover { color: var(--white); }
+    .footer__contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 10px;
+    }
+    .footer__contact-item svg {
+      width: 16px; height: 16px;
+      opacity: 0.6;
+      flex-shrink: 0;
+    }
+    .footer__bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer__copy {
+      font-size: 13px;
+      color: rgba(255,255,255,0.3);
+    }
+    .footer__made {
+      font-size: 13px;
+      color: rgba(255,255,255,0.3);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .footer__made span { color: var(--green-soft); }
+
+    /* ─────────────────────────────────────────────
+       MOBILE NAV OVERLAY
+    ───────────────────────────────────────────── */
+    .nav__mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      background: rgba(255,255,255,0.98);
+      backdrop-filter: blur(12px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+    }
+    .nav__mobile-menu.open { display: flex; }
+    .nav__mobile-menu a {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 500;
+      color: var(--green-dark);
+    }
+    .nav__mobile-close {
+      position: absolute;
+      top: 24px; right: 24px;
+      background: none;
+      border: none;
+      font-size: 28px;
+      color: var(--green-dark);
+      cursor: pointer;
+    }
+
+    /* ─────────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .why__grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .nav__links { display: none; }
+      .nav__burger { display: flex; }
+
+      .hero__container {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        text-align: center;
+      }
+      .hero__badge { margin-inline: auto; }
+      .hero__sub   { margin-inline: auto; }
+      .hero__actions { justify-content: center; }
+      .hero__visual { display: none; }
+
+      .about__inner,
+      .product__inner { grid-template-columns: 1fr; gap: 48px; }
+      .product__content,
+      .product__visual { order: unset; }
+
+      .footer__inner { grid-template-columns: 1fr; gap: 40px; }
+      .footer__bottom { flex-direction: column; gap: 12px; text-align: center; }
+
+      .why__grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .container { padding-inline: 20px; }
+      .why__grid { grid-template-columns: 1fr; }
+      .product__stats { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       NAVIGATION
+  ════════════════════════════════════════════ -->
+  <nav class="nav" id="nav">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="#" class="nav__logo">
+          <img src="logo.png" alt="Jongkong Koe" class="nav__logo-img" />
+          <div class="nav__logo-text">
+            <span class="nav__logo-name">Jongkong Koe</span>
+            <span class="nav__logo-tag">Authentic. Sweet. Nostalgic.</span>
+          </div>
+        </a>
+        <ul class="nav__links">
+          <li><a href="#about">Our Story</a></li>
+          <li><a href="#product">Product</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#why">Why Us</a></li>
+          <li>
+            <a href="https://wa.me/6282238111205?text=Saya%20ingin%20order%20Jongkong" class="nav__cta">Order Now</a>
+          </li>
+        </ul>
+        <button class="nav__burger" id="burger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="nav__mobile-menu" id="mobileMenu">
+    <button class="nav__mobile-close" id="mobileClose">&times;</button>
+    <a href="#about" class="mobile-link">Our Story</a>
+    <a href="#product" class="mobile-link">Product</a>
+    <a href="#pricing" class="mobile-link">Pricing</a>
+    <a href="#why" class="mobile-link">Why Us</a>
+    <a href="https://wa.me/6282238111205?text=Saya%20ingin%20order%20Jongkong" class="mobile-link">Order Now</a>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       HERO
+  ════════════════════════════════════════════ -->
+  <section class="hero" id="home">
+    <div class="container hero__container">
+
+      <!-- Text -->
+      <div class="hero__text">
+        <div class="hero__badge reveal">
+          <span class="hero__badge-dot"></span>
+          <span class="hero__badge-text">Traditional Bangka Belitung Dessert</span>
+        </div>
+        <h1 class="hero__headline reveal reveal-delay-1">
+          Authentic Taste of<br><em>Indonesian Heritage</em>
+        </h1>
+        <p class="hero__sub reveal reveal-delay-2">
+          A perfect harmony of sweet and savory, crafted from tradition. Every bite tells the story of Bangka Belitung.
+        </p>
+        <div class="hero__actions reveal reveal-delay-3">
+          <a href="https://wa.me/6282238111205?text=Saya%20ingin%20order%20Jongkong" class="btn btn--primary">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Order via WhatsApp
+          </a>
+          <a href="#about" class="btn btn--ghost">Discover More</a>
+        </div>
+      </div>
+
+      <!-- Visual card -->
+      <div class="hero__visual reveal reveal-delay-2">
+        <div class="hero__card">
+          <div class="hero__float-badge">Made<br>with<br>Love</div>
+          <div class="hero__product-visual">
+            <img src="product-1.jpg" alt="Jongkong Koe" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius-md);" />
+          </div>
+          <div class="hero__card-label">
+            <div class="hero__card-name">Jongkong Koe</div>
+            <div class="hero__card-desc">Traditional Pandan Layered Cake</div>
+            <div class="hero__card-price">
+              <div>
+                <div class="hero__card-price-val">Rp 15.000</div>
+                <div class="hero__card-price-per">per piece</div>
+              </div>
+              <a href="https://wa.me/6282238111205?text=Saya%20ingin%20order%20Jongkong" class="btn btn--primary" style="padding: 10px 20px; font-size: 13px;">Order</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="hero__scroll">
+      <span>Scroll</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       ABOUT
+  ════════════════════════════════════════════ -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about__inner">
+
+        <!-- Visual -->
+        <div class="about__visual reveal">
+          <div class="about__image-wrap">
+            <img src="product-3.jpg" alt="Jongkong Koe" style="width:100%;height:100%;object-fit:cover;" />
+          </div>
+          <div class="about__accent-card">
+            <div class="about__accent-icon">🌿</div>
+            <div>
+              <div class="about__accent-label">Signature ingredient</div>
+              <div class="about__accent-val">Fresh Pandan</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="about__content">
+          <div class="section-eyebrow reveal">Our Heritage</div>
+          <h2 class="section-title reveal reveal-delay-1">
+            What is<br><em>Jongkong?</em>
+          </h2>
+          <div class="about__divider reveal reveal-delay-1"></div>
+          <p class="section-body reveal reveal-delay-2">
+            Jongkong is a traditional Indonesian dessert from Bangka Belitung, known for its perfect balance of sweet and savory flavors. Made from natural ingredients such as rice flour, coconut milk, and premium palm sugar, it offers a soft and slightly chewy texture.
+          </p>
+          <p class="section-body reveal reveal-delay-2" style="margin-top: 16px;">
+            Wrapped in banana leaves with a fragrant pandan aroma, it delivers a nostalgic and authentic experience that has been cherished for generations.
+          </p>
+          <div class="about__ingredients reveal reveal-delay-3">
+            <span class="ingredient-pill">Rice Flour</span>
+            <span class="ingredient-pill">Coconut Milk</span>
+            <span class="ingredient-pill">Palm Sugar</span>
+            <span class="ingredient-pill">Pandan Leaf</span>
+            <span class="ingredient-pill">Banana Leaf</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       PRODUCT HIGHLIGHT
+  ════════════════════════════════════════════ -->
+  <section class="product" id="product">
+    <div class="container">
+      <div class="product__inner">
+
+        <!-- Visual -->
+        <div class="product__visual reveal">
+          <div class="product__showcase">
+            <img src="product-1.jpg" alt="Jongkong Koe product" style="width:100%;height:100%;object-fit:cover;" />
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="product__content">
+          <div class="section-eyebrow reveal">Our Product</div>
+          <h2 class="section-title reveal reveal-delay-1">
+            Beautifully Layered,<br><em>Perfectly Balanced</em>
+          </h2>
+          <p class="section-body reveal reveal-delay-2">
+            With its signature green and white layers, jongkong is both visually appealing and delicious — perfect as a snack or dessert. Each layer carries a distinct flavor that harmonizes into one unforgettable taste.
+          </p>
+
+          <div class="product__stats reveal reveal-delay-3">
+            <div class="stat-card">
+              <div class="stat-card__num">100%</div>
+              <div class="stat-card__label">Natural Ingredients</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card__num">0</div>
+              <div class="stat-card__label">Artificial Flavoring</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card__num">Soft</div>
+              <div class="stat-card__label">Chewy Texture</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card__num">Fresh</div>
+              <div class="stat-card__label">Made Daily</div>
+            </div>
+          </div>
+
+          <div class="product__quote reveal reveal-delay-4">
+            <div class="product__quote-text">
+              "Every bite brings you closer to the warm kitchens of Bangka Belitung."
+            </div>
+            <div class="product__quote-author">— The Jongkong Koe Story</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       PRICING
+  ════════════════════════════════════════════ -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="pricing__header">
+        <div class="section-eyebrow reveal">Pricing</div>
+        <h2 class="section-title reveal reveal-delay-1">Simple Pricing</h2>
+        <p class="pricing__subtitle reveal reveal-delay-2">
+          Affordable premium traditional dessert, crafted with care and delivered fresh to you.
+        </p>
+      </div>
+
+      <div class="pricing__cards">
+        <div class="price-card reveal reveal-delay-1">
+          <div class="price-card__name">Jongkong Koe</div>
+          <p class="price-card__desc">Classic pandan & coconut layered cake, wrapped in banana leaf</p>
+          <div class="price-card__price">
+            <div class="price-card__amount">Rp 15K</div>
+            <div class="price-card__unit">per piece</div>
+          </div>
+          <ul class="price-card__features">
+            <li>Freshly made each day</li>
+            <li>100% natural ingredients</li>
+            <li>Fragrant pandan aroma</li>
+            <li>Wrapped in banana leaf</li>
+            <li>Soft & chewy texture</li>
+          </ul>
+          <a href="https://wa.me/6282238111205?text=Saya%20ingin%20order%20Jongkong" class="btn btn--ghost" style="width: 100%; justify-content: center;">
+            Order via WhatsApp
+          </a>
+        </div>
+
+        <div class="price-card price-card--featured reveal reveal-delay-2">
+          <div class="price-card__badge">Best Value</div>
+          <div class="price-card__name">Jongkong Koe</div>
+          <p class="price-card__desc">Premium box of 6 — perfect for sharing or gifting</p>
+          <div class="price-card__price">
+            <div class="price-card__amount">Rp 80K</div>
+            <div class="price-card__unit">per box (6 pcs)</div>
+          </div>
+          <ul class="price-card__features">
+            <li>6 pieces in a premium box</li>
+            <li>Gift-ready packaging</li>
+            <li>Made-to-order freshness</li>
+            <li>Free WhatsApp delivery info</li>
+            <li>Bulk order available</li>
+          </ul>
+          <a href="https://wa.me/6282238111205?text=Saya%20ingin%20order%20Jongkong" class="btn btn--white" style="width: 100%; justify-content: center;">
+            Order via WhatsApp
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       GALLERY
+  ════════════════════════════════════════════ -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <div class="gallery__header">
+        <div class="section-eyebrow reveal">Gallery</div>
+        <h2 class="section-title reveal reveal-delay-1">See It <em>Up Close</em></h2>
+      </div>
+      <div class="gallery__grid reveal">
+        <div class="gallery__item">
+          <img src="product-1.jpg" alt="Jongkong Koe — single cup" />
+          <div class="gallery__item-overlay">
+            <span class="gallery__item-label">Fresh &amp; Ready to Serve</span>
+          </div>
+        </div>
+        <div class="gallery__item">
+          <img src="product-2.jpg" alt="Jongkong Koe — box of 6" />
+          <div class="gallery__item-overlay">
+            <span class="gallery__item-label">Perfect for Gifting</span>
+          </div>
+        </div>
+        <div class="gallery__item">
+          <img src="product-3.jpg" alt="Jongkong Koe — lifestyle" />
+          <div class="gallery__item-overlay">
+            <span class="gallery__item-label">Naturally Beautiful</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       WHY CHOOSE US
+  ════════════════════════════════════════════ -->
+  <section class="why" id="why">
+    <div class="container">
+      <div class="why__header">
+        <div class="section-eyebrow reveal">Why Choose Us</div>
+        <h2 class="section-title reveal reveal-delay-1">
+          Crafted with Intention,<br><em>Served with Pride</em>
+        </h2>
+      </div>
+
+      <div class="why__grid">
+        <div class="why-card reveal">
+          <div class="why-card__icon">📜</div>
+          <div class="why-card__title">Authentic Recipe</div>
+          <p class="why-card__body">Traditional recipe passed down through generations from Bangka Belitung, unchanged and uncompromised.</p>
+        </div>
+        <div class="why-card reveal reveal-delay-1">
+          <div class="why-card__icon">🌿</div>
+          <div class="why-card__title">Fresh Natural Ingredients</div>
+          <p class="why-card__body">We source fresh pandan, quality coconut milk, and premium palm sugar — no artificial additives.</p>
+        </div>
+        <div class="why-card reveal reveal-delay-2">
+          <div class="why-card__icon">🤲</div>
+          <div class="why-card__title">Handmade Quality</div>
+          <p class="why-card__body">Each piece is carefully handcrafted, ensuring consistent texture and the perfect layered finish every time.</p>
+        </div>
+        <div class="why-card reveal reveal-delay-3">
+          <div class="why-card__icon">✨</div>
+          <div class="why-card__title">Hygienic Preparation</div>
+          <p class="why-card__body">Clean kitchen practices, proper food handling, and fresh daily production — your safety is our priority.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       CTA SECTION
+  ════════════════════════════════════════════ -->
+  <section class="cta-section" id="order">
+    <div class="container">
+      <div class="cta-section__inner">
+        <div class="cta-section__eyebrow reveal">Order Today</div>
+        <h2 class="cta-section__title reveal reveal-delay-1">
+          Bring Home the<br><em>Taste of Tradition</em>
+        </h2>
+        <p class="cta-section__sub reveal reveal-delay-2">
+          Fresh, handmade, and delivered to your door. Order your Jongkong Koe today and experience the authentic flavors of Bangka Belitung.
+        </p>
+        <div class="cta-section__actions reveal reveal-delay-3">
+          <a href="https://wa.me/6282238111205?text=Saya%20ingin%20order%20Jongkong" class="btn btn--white">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Order via WhatsApp 082238111205
+          </a>
+        </div>
+        <div class="cta-section__note reveal reveal-delay-4">
+          Available for individual orders & bulk. Fresh daily.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__brand-name">Jongkong Koe</div>
+          <div class="footer__brand-tag">Authentic. Sweet. Nostalgic.</div>
+          <p class="footer__brand-desc">
+            Bringing the authentic taste of traditional Indonesian dessert from Bangka Belitung to your table — made with love, tradition, and the finest natural ingredients.
+          </p>
+        </div>
+        <div>
+          <div class="footer__col-title">Quick Links</div>
+          <ul class="footer__links">
+            <li><a href="#about">Our Story</a></li>
+            <li><a href="#product">Product</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#why">Why Us</a></li>
+            <li><a href="#order">Order Now</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__col-title">Contact Us</div>
+          <div class="footer__contact-item">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp 082238111205
+          </div>
+          <div class="footer__contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Tangerang, Indonesia
+          </div>
+          <br/>
+          <a href="https://wa.me/6282238111205?text=Saya%20ingin%20order%20Jongkong" class="btn btn--primary" style="font-size: 13px; padding: 11px 22px;">
+            Order Now
+          </a>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <div class="footer__copy">&copy; 2025 Jongkong Koe. All rights reserved.</div>
+        <div class="footer__made">Made with <span>♥</span> in Indonesia</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════
+       JAVASCRIPT
+  ════════════════════════════════════════════ -->
+  <script>
+    // ─── Navbar scroll effect ────────────────────
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // ─── Mobile menu ─────────────────────────────
+    const burger     = document.getElementById('burger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileClose = document.getElementById('mobileClose');
+
+    burger.addEventListener('click', () => mobileMenu.classList.add('open'));
+    mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    });
+
+    // ─── Reveal on scroll ────────────────────────
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    document.querySelectorAll('.reveal').forEach(el => {
+      revealObserver.observe(el);
+    });
+
+    // Trigger hero reveals immediately (above the fold)
+    document.querySelectorAll('.hero .reveal').forEach(el => {
+      setTimeout(() => el.classList.add('visible'), 100);
+    });
+
+    // ─── Smooth nav active state ─────────────────
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks  = document.querySelectorAll('.nav__links a');
+
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            navLinks.forEach(link => {
+              link.style.color = link.getAttribute('href') === `#${id}`
+                ? 'var(--green-primary)'
+                : '';
+            });
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+    sections.forEach(s => sectionObserver.observe(s));
+  </script>
+
+</body>
+</html>
